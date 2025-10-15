@@ -1,1 +1,22 @@
-<p>chat works!</p>
+<div class="chat-container">
+  <div class="messages">
+    <div *ngFor="let msg of messages" [ngClass]="msg.sender">
+      <strong *ngIf="msg.sender === 'user'">👤 Vous:</strong>
+      <strong *ngIf="msg.sender === 'bot'">🤖 Bot:</strong>
+      <span>{{ msg.message }}</span>
+    </div>
+    <!-- 💭 Indicateur de réflexion -->
+<div *ngIf="loading" class="loading">
+  🤖 Le bot réfléchit...
+</div>
+
+  </div>
+
+  <div class="input-area">
+    <input
+      [(ngModel)]="userInput"
+      placeholder="Écrivez un message..."
+      (keyup.enter)="sendMessage()" />
+    <button (click)="sendMessage()">Envoyer</button>
+  </div>
+</div>
